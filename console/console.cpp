@@ -24,19 +24,12 @@ void __newLine(char* str = NULL)
 void __backSpace(char* command, size_t& commandLength)
 {
     if (commandLength != 0) {
-        Serial.print('\r');
-
-        char blankLine[LINE_MAX_LENGTH + 1];
-        memset(blankLine, 32, LINE_MAX_LENGTH);
-        blankLine[LINE_MAX_LENGTH] = 0; //end char
-        Serial.print(blankLine);
-
-        Serial.print('\r');
+        Serial.print((char)0x08);
+        Serial.print(' ');
+        Serial.print((char)0x08);
 
         command[commandLength - 1] = 0;
         commandLength -= 1;
-
-        __newLine(command);
     }
 }
 
